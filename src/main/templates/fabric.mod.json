@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "name": "${mod_name}",
+  "version": "${mod_version}",
+  "description": "${mod_description}",
+  "authors": ["${mod_author}"],
+  "license": "${mod_license}",
+  "icon": "icon.png",
+  "contact": {
+    "issues": "${mod_issue_tracker}",
+    "sources": "${mod_sources}"
+  },
+  "environment": "client",
+  "entrypoints": {
+    "modmenu": [
+      "im.aether.doppler.addon.ModMenuApiImpl"
+    ],
+    "voicechat": [
+      "im.aether.doppler.addon.SimpleVC"
+    ],
+    "client": [
+      "im.aether.doppler.loaders.DopplerFabric"
+    ],
+    "main": []
+  }
+}
