@@ -1,5 +1,6 @@
 {
   "package": "im.aether.doppler.mixin",
+  "refmap": "doppler.refmap.json",
   "required": true,
   "minVersion": "0.8",
   "injectors": {
