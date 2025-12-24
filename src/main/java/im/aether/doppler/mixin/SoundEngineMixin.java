@@ -54,9 +54,15 @@ public abstract class SoundEngineMixin {
         return sm;
     }
 
+    /*? neoforge {*/
+    /*@Redirect(method = /^? <=1.21.1 {^/ /^"lambda$tickNonPaused$4" ^//^?} else {^/"lambda$tickNonPaused$5" /^?}^/ ,
+            at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/audio/Channel;setPitch(F)V")
+    )
+    *//*?} else {*/
     @Redirect(method = /*? fabric {*/"method_19748" /*?} else {*/ /*"lambda$tickNonPaused$4(FFLnet/minecraft/world/phys/Vec3;Lcom/mojang/blaze3d/audio/Channel;)V" *//*?}*/,
             at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/audio/Channel;setPitch(F)V")
     )
+    /*?}*/
     private static void pitchHook(Channel instance, float pitch) {
         if (Util.EFFECT_SCALE == 0) instance.setPitch(pitch);
     }
