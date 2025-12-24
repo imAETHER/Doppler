@@ -54,15 +54,14 @@ public abstract class SoundEngineMixin {
         return sm;
     }
 
-    @Redirect(method = /*? fabric {*//*"method_19748" *//*?} else {*/ "lambda$tickNonPaused$4" /*?}*/,
+    @Redirect(method = /*? fabric {*/"method_19748" /*?} else {*/ /*"lambda$tickNonPaused$4" *//*?}*/,
             at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/audio/Channel;setPitch(F)V")
-            /*? forge {*/ ,remap = false /*?}*/
     )
     private static void pitchHook(Channel instance, float pitch) {
         if (Util.EFFECT_SCALE == 0) instance.setPitch(pitch);
     }
 
-    @Inject(method = /*? <=1.21.5 {*/ "tickNonPaused" /*?} else {*/ /*"tickInGameSound" *//*?}*/, at = @At(value = "INVOKE", target = "Ljava/util/Map;entrySet()Ljava/util/Set;", ordinal = 0))
+    @Inject(method = /*? <=1.21.5 {*/ /*"tickNonPaused" *//*?} else {*/ "tickInGameSound" /*?}*/, at = @At(value = "INVOKE", target = "Ljava/util/Map;entrySet()Ljava/util/Set;", ordinal = 0))
     private void onTickSounds(CallbackInfo ci) {
         this.instanceBySource.forEach((src, instance) -> {
             if (instance == null) return;

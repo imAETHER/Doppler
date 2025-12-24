@@ -57,7 +57,7 @@ public class Util {
 
     public static float getDeltaTime() {
         final Minecraft mc = Minecraft.getInstance();
-        return /*? < 1.21.1 {*/ mc.getFrameTime() /*?} else {*/  /*/^? >= 1.21.5 {^/ /^mc.getDeltaTracker().getRealtimeDeltaTicks() ^//^?} else {^/  mc.getTimer().getRealtimeDeltaTicks()  /^?}^/  *//*?}*/;
+        return /*? < 1.21.1 {*/ /*mc.getFrameTime() *//*?} else {*/  /*? >= 1.21.5 {*/ mc.getDeltaTracker().getRealtimeDeltaTicks() /*?} else {*/  /*mc.getTimer().getRealtimeDeltaTicks()  *//*?}*/  /*?}*/;
     }
 
     public static Vec3 getListenerLerp(final Entity entity) {

@@ -1,8 +1,8 @@
 package im.aether.doppler.addon;
 
 /*? if forge || neoforge {*/
-import de.maxhenkel.voicechat.api.ForgeVoicechatPlugin;
-/*?}*/
+/*import de.maxhenkel.voicechat.api.ForgeVoicechatPlugin;
+*//*?}*/
 import de.maxhenkel.voicechat.api.Position;
 import de.maxhenkel.voicechat.api.VoicechatApi;
 import de.maxhenkel.voicechat.api.VoicechatPlugin;
@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 /*? if forge || neoforge {*/
-@ForgeVoicechatPlugin
-/*?}*/
+/*@ForgeVoicechatPlugin
+*//*?}*/
 public class SimpleVC implements VoicechatPlugin {
 
     private final Logger logger = LoggerFactory.getLogger("Doppler(SimpleVC)");

@@ -1,5 +1,5 @@
 //? if fabric {
-/*package im.aether.doppler.loaders;
+package im.aether.doppler.loaders;
 
 import im.aether.doppler.Util;
 import im.aether.doppler.addon.PlasmoVC;
@@ -23,4 +23,4 @@ public class DopplerFabric implements ClientModInitializer {
         LOGGER.info("Client initialized!");
     }
 }
-*///?}
+//?}
