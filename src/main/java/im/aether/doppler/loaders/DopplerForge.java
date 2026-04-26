@@ -31,7 +31,7 @@ public class DopplerForge {
     public DopplerForge(/^? >1.18.2 && <1.20.1 {^/ /^final FMLJavaModLoadingContext context ^//^?}^/) {
         LOGGER.info("Initializing!");
 
-        MinecraftForge.EVENT_BUS.addListener((FMLClientSetupEvent event) -> Util.loadConfig());
+        FMLJavaModLoadingContext.get().getModEventBus().addListener((FMLClientSetupEvent event) -> Util.loadConfig());
         /^? if > 1.18.2 && < 1.20.1 {^/
         /^context.getContainer().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class,
                 () -> new ConfigScreenHandler.ConfigScreenFactory((mc, prevScreen)
