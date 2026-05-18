@@ -1,5 +1,5 @@
 plugins {
-    id("dev.isxander.modstitch.base") version "0.5.12"
+    id("dev.isxander.modstitch.base") version "0.8.5"
 }
 
 fun prop(name: String, consumer: (prop: String) -> Unit) {
@@ -12,8 +12,6 @@ val minecraft = property("deps.minecraft") as String
 modstitch {
     minecraftVersion = minecraft
 
-    javaTarget = if (stonecutter.eval(stonecutter.current.version, ">=1.20.5")) 21 else 17
-
     parchment {
         prop("deps.parchment") { mappingsVersion = it }
     }
@@ -21,20 +19,15 @@ modstitch {
     metadata {
         modId = "doppler"
         modName = "Doppler"
-        modVersion = "1.2.0"
+        modVersion = "1.2.2"
         modGroup = "im.aether"
         modAuthor = "imAETHER"
         modDescription = "Adds the Doppler effect into Minecraft's sound engine."
         modLicense = "MIT"
 
-        fun <K, V> MapProperty<K, V>.populate(block: MapProperty<K, V>.() -> Unit) {
-            block()
-        }
-
-        replacementProperties.populate {
-            put("mod_issue_tracker", "https://github.com/imAETHER/Doppler/issues")
-            put("mod_sources", "https://github.com/imAETHER/Doppler")
-            put("pack_format", when (property("deps.minecraft")) {
+        replacementProperties.put("mod_issue_tracker", "https://github.com/imAETHER/Doppler/issues")
+        replacementProperties.put("mod_sources", "https://github.com/imAETHER/Doppler")
+        replacementProperties.put("pack_format", when (property("deps.minecraft")) {
                     "1.18.2" -> 9
                     "1.19.2" -> 10
                     "1.20.1" -> 15
@@ -44,7 +37,6 @@ modstitch {
                     else -> throw IllegalArgumentException("Invalid pack format! Add it from here -> https://minecraft.wiki/w/Pack_format")
                 }.toString()
             )
-        }
     }
 
     // Fabric
@@ -55,20 +47,18 @@ modstitch {
 
     // ModDevGradle (NeoForge, Forge, Forgelike)
     moddevgradle {
-        enable {
-            prop("deps.forge") { forgeVersion = it }
-            prop("deps.neoform") { neoFormVersion = it }
-            prop("deps.neoforge") { neoForgeVersion = it }
-            prop("deps.mcp") { mcpVersion = it }
-        }
+        prop("deps.forge") { forgeVersion = it }
+        prop("deps.neoform") { neoFormVersion = it }
+        prop("deps.neoforge") { neoForgeVersion = it }
+        prop("deps.mcp") { mcpVersion = it }
 
         defaultRuns()
 
-        configureNeoforge {
+        /*configureNeoforge {
             runs.all {
                 disableIdeRun()
             }
-        }
+        }*/
     }
 
     mixin {

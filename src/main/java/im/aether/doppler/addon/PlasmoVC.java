@@ -13,7 +13,7 @@ import su.plo.voice.api.event.EventSubscribe;
 @Addon(
         id = "pv-addon-doppler",
         name = "Doppler",
-        version = /*$ mod_version*/"1.2.0",
+        version = /*$ mod_version*/"1.2.2",
         authors = {"imAETHER"}
 )
 public class PlasmoVC implements AddonInitializer {

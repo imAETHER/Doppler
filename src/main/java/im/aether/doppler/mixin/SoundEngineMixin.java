@@ -70,7 +70,7 @@ public abstract class SoundEngineMixin {
     @Inject(method = /*? <=1.21.5 {*/ /*"tickNonPaused" *//*?} else {*/ "tickInGameSound" /*?}*/, at = @At(value = "INVOKE", target = "Ljava/util/Map;entrySet()Ljava/util/Set;", ordinal = 0))
     private void onTickSounds(CallbackInfo ci) {
         this.instanceBySource.forEach((src, instance) -> {
-            if (instance == null) return;
+            if (instance == null || instance.isRelative()) return;
 
             final ChannelAccess.ChannelHandle channelHandle = this.instanceToChannel.get(instance);
             if (channelHandle != null) {
