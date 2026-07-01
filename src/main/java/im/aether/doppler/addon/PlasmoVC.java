@@ -1,6 +1,8 @@
 package im.aether.doppler.addon;
 
+import im.aether.doppler.SoundData;
 import im.aether.doppler.Util;
+import net.minecraft.world.phys.Vec3;
 import org.lwjgl.openal.AL11;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +12,12 @@ import su.plo.voice.api.client.audio.device.source.AlSource;
 import su.plo.voice.api.client.event.audio.source.AudioSourceWriteEvent;
 import su.plo.voice.api.event.EventSubscribe;
 
+import java.util.UUID;
+
 @Addon(
         id = "pv-addon-doppler",
         name = "Doppler",
-        version = /*$ mod_version*/"1.2.2",
+        version = /*$ mod_version*/"1.2.3",
         authors = {"imAETHER"}
 )
 public class PlasmoVC implements AddonInitializer {
@@ -35,8 +39,20 @@ public class PlasmoVC implements AddonInitializer {
             final float[] srcPos = new float[3];
             alSource.getFloatArray(AL11.AL_POSITION, srcPos);
 
-            // even though BaseAlSource#pointer is an integer field, the getter returns a long 🤨
-            alSource.setFloat(AL11.AL_PITCH, Util.fullDopplerAL((int) alSource.getPointer(), srcPos));
+            final UUID uuid = srcEvent.getSource().getSourceInfo().getId();
+
+            final SoundData srcData = Util.updateSound(
+                    uuid.hashCode(),
+                    new Vec3(srcPos[0], srcPos[1], srcPos[2])
+            );
+
+            alSource.setFloatArray(AL11.AL_VELOCITY,
+                    new float[]{
+                            (float) srcData.velocity.x(),
+                            (float) srcData.velocity.y(),
+                            (float) srcData.velocity.z()
+                    }
+            );
         });
     }
 

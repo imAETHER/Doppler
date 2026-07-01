@@ -19,7 +19,7 @@ modstitch {
     metadata {
         modId = "doppler"
         modName = "Doppler"
-        modVersion = "1.2.2"
+        modVersion = "1.2.3"
         modGroup = "im.aether"
         modAuthor = "imAETHER"
         modDescription = "Adds the Doppler effect into Minecraft's sound engine."
@@ -34,6 +34,7 @@ modstitch {
                     "1.21.1" -> 48
                     "1.21.5" -> 71
                     "1.21.10" -> 88.0
+                    "26.1.2" -> 101.1
                     else -> throw IllegalArgumentException("Invalid pack format! Add it from here -> https://minecraft.wiki/w/Pack_format")
                 }.toString()
             )
@@ -53,12 +54,6 @@ modstitch {
         prop("deps.mcp") { mcpVersion = it }
 
         defaultRuns()
-
-        /*configureNeoforge {
-            runs.all {
-                disableIdeRun()
-            }
-        }*/
     }
 
     mixin {

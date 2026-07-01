@@ -1,8 +1,14 @@
 package im.aether.doppler.screen;
 
-//? >= 1.20.1 {
-import net.minecraft.client.gui.GuiGraphics;
+//? >= 1.20.1 && < 26.1.2 {
+/*import net.minecraft.client.gui.GuiGraphics;
+*///?}
+
+//? 26.1.2 {
+import net.minecraft.client.gui.ActiveTextCollector;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 //?}
+
 import im.aether.doppler.Util;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.screens.Screen;
@@ -41,15 +47,24 @@ public class OptionScreen extends Screen {
 
     //? >= 1.20.1 {
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void /*? <26.1.0 {*//*render*//*?} else {*/extractRenderState/*?}*/(/*? >= 1.20.1 && < 26.1.0 {*//*GuiGraphics*//*?} else {*/ GuiGraphicsExtractor /*?}*/ guiGraphics, int mouseX, int mouseY, float partialTick) {
         /*? if forge {*/
         /*super.renderBackground(guiGraphics);
         *//*?}*/
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
+
+        //? < 26.1.0 {
+        /*super.render(guiGraphics, mouseX, mouseY, partialTick);
         guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, 10, -1);
 
         guiGraphics.drawString(this.font, "Effect scale (0 to disable)", this.width / 2 - (160 / 2), this.height / 2 - 22, -1, true);
         guiGraphics.drawString(this.font, "Default is 40%", this.width / 2 - (160 / 2), this.height / 2 + 15, -1, true);
+        *///?} else {
+        super.extractRenderState(guiGraphics, mouseX, mouseY, partialTick);
+        guiGraphics.centeredText(this.font, this.title, this.width / 2, 10, -1);
+
+        guiGraphics.text(this.font, "Effect scale (0 to disable)", this.width / 2 - (160 / 2), this.height / 2 - 22, -1, true);
+        guiGraphics.text(this.font, "Default is 40%", this.width / 2 - (160 / 2), this.height / 2 + 15, -1, true);
+        //?}
     }
     //?} else {
     /*@Override
@@ -88,7 +103,7 @@ public class OptionScreen extends Screen {
 
         @Override
         protected void applyValue() {
-            Util.EFFECT_SCALE = this.value;
+            Util.EFFECT_SCALE = (float) this.value;
         }
     }
 }
