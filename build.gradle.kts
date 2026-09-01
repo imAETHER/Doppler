@@ -35,6 +35,7 @@ modstitch {
                     "1.21.5" -> 71
                     "1.21.10" -> 88.0
                     "26.1.2" -> 101.1
+                    "26.2" -> 107.1
                     else -> throw IllegalArgumentException("Invalid pack format! Add it from here -> https://minecraft.wiki/w/Pack_format")
                 }.toString()
             )
@@ -42,7 +43,7 @@ modstitch {
 
     // Fabric
     loom {
-        fabricLoaderVersion = "0.18.2"
+        fabricLoaderVersion = "0.19.2"
         configureLoom {}
     }
 
