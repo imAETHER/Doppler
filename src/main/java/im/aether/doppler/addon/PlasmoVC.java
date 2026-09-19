@@ -17,7 +17,7 @@ import java.util.UUID;
 @Addon(
         id = "pv-addon-doppler",
         name = "Doppler",
-        version = /*$ mod_version*/"1.2.3",
+        version = /*$ mod_version*/"1.2.4",
         authors = {"imAETHER"}
 )
 public class PlasmoVC implements AddonInitializer {

@@ -42,7 +42,12 @@ public abstract class SoundEngineMixin {
         }
 
         this.instanceBySource.forEach((src, instance) -> {
-            if (instance == null || instance.isRelative() || Util.EFFECT_SCALE == 0) return;
+            if (instance == null || instance.isRelative()
+                    || Util.EFFECT_SCALE == 0
+                    || instance.getSource() == SoundSource.MUSIC
+                    /*? >= 1.21.10 {*/|| instance.getSource() == SoundSource.UI/*?}*/) {
+                return;
+            }
 
             final ChannelAccess.ChannelHandle channelHandle = this.instanceToChannel.get(instance);
             if (channelHandle != null) {

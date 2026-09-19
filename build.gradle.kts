@@ -19,7 +19,7 @@ modstitch {
     metadata {
         modId = "doppler"
         modName = "Doppler"
-        modVersion = "1.2.3"
+        modVersion = "1.2.4"
         modGroup = "im.aether"
         modAuthor = "imAETHER"
         modDescription = "Adds the Doppler effect into Minecraft's sound engine."
